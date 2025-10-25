@@ -6,9 +6,10 @@
     // This delay prevents that, making this is the only case where we don't lean on browser defaults.
     // Remove setTimeout wrapper to allow automatic scrolling.
     setTimeout(() =>
-      document
-        .querySelector(frame.contentWindow.location.hash || null)
-        ?.replaceWith(...frame.contentDocument.body.childNodes)
+      document.querySelector(
+        (frame.contentWindow.performance.getEntriesByType("navigation")[0].responseStatus + "").startsWith(2) && frame.contentWindow.location.hash
+        || null
+      )?.replaceWith(...frame.contentDocument.body.childNodes)
     );
   }
 </script>

@@ -5,7 +5,7 @@ import { hideBin } from "yargs/helpers";
 import { RewritingStream } from 'parse5-html-rewriting-stream';
 import ss from "stream-string";
 
-const snippetHolder = [`<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))"></iframe>`];
+const snippetHolder = [`<iframe hidden name=htmz onload="setTimeout(()=>document.querySelector((contentWindow.performance.getEntriesByType('navigation')[0].responseStatus+'').startsWith(2)&&contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))"></iframe>`];
 
 const args = yargs(hideBin(process.argv))
   .scriptName("npx htmzify")
