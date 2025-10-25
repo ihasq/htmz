@@ -316,6 +316,9 @@
 -->&lt;<span class="code-token">iframe hidden name</span>="<b>#my-element</b>" <span class="code-token">onload</span>="htmz(<span class="code-token">this</span>)">&lt;/<span class="code-token">iframe</span>>
 &lt;<span class="code-token">script</span>>
   <span class="code-token">function</span> htmz(frame) {
+
+    if(!/^2/.test(frame.contentWindow.performance.getEntriesByType("navigation")[0].responseStatus)) return;
+
     document.<span class="code-token">querySelector</span>(frame.name) <span class="code-comment">// use the iframe's name instead of the URL hash</span>
       ?.<span class="code-token">replaceWith</span>(...frame.contentDocument.body.childNodes);
   }
@@ -401,7 +404,7 @@
     <span class="code-comment">// Remove setTimeout to let the browser autoscroll content changes into view</span>
     <span class="code-token">setTimeout</span>(() =>
       document
-        .<span class="code-token">querySelector</span>(frame.contentWindow.location.hash || <span class="code-token">null</span>)
+        .<span class="code-token">querySelector</span>(/^2/.test(frame.contentWindow.performance.getEntriesByType("navigation")[0].responseStatus) && frame.contentWindow.location.hash || <span class="code-token">null</span>)
         ?.<span class="code-token">replaceWith</span>(...frame.contentDocument.body.childNodes)
     );
   }

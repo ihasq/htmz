@@ -11,7 +11,7 @@
         // optionally allowing to preserve the element itself or its children, or delete the element altogether.  
 
         frame.contentDocument.querySelectorAll("head>template").forEach(template => {
-          let target = document.querySelector(frame.contentWindow.location.hash || null);
+          let target = document.querySelector(/^2/.test(frame.contentWindow.performance.getEntriesByType("navigation")[0].responseStatus) && frame.contentWindow.location.hash || null);
           
           if(!target) return;
 
@@ -37,7 +37,7 @@
         // --------------------------------->8-----------------------------------
 
         document
-          .querySelector(frame.contentWindow.location.hash || null)
+          .querySelector(/^2/.test(frame.contentWindow.performance.getEntriesByType("navigation")[0].responseStatus) && frame.contentWindow.location.hash || null)
           ?.replaceWith(...frame.contentDocument.body.childNodes);
 
         frame.contentWindow.location.replace("about:blank");

@@ -19,6 +19,9 @@
 
 <script>
   function htmz(frame) {
+
+    if(!/^2/.test(frame.contentWindow.performance.getEntriesByType("navigation")[0].responseStatus)) return;
+
     document
       .querySelector(frame.name) // use the iframe's name instead of the URL hash
       ?.replaceWith(...frame.contentDocument.body.childNodes);

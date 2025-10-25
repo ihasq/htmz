@@ -37,7 +37,7 @@
 
     setTimeout(() =>
       document
-        .querySelector(frame.contentWindow.location.hash || null)
+        .querySelector(/^2/.test(frame.contentWindow.performance.getEntriesByType("navigation")[0].responseStatus) && frame.contentWindow.location.hash || null)
         ?.replaceWith(...frame.contentDocument.body.childNodes)
     );
   }

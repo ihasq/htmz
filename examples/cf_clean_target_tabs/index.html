@@ -18,7 +18,7 @@
 
 <script>
   function htmz(frame) {
-    if (frame.contentWindow.location.href === "about:blank") return;
+    if (frame.contentWindow.location.href === "about:blank" || !/^2/.test(frame.contentWindow.performance.getEntriesByType("navigation")[0].responseStatus)) return;
     const duplicates = document.getElementsByName(frame.name);
 
     document
