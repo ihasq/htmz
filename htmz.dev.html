@@ -7,7 +7,7 @@
     // Remove setTimeout wrapper to allow automatic scrolling.
     setTimeout(() =>
       document.querySelector(
-        (frame.contentWindow.performance.getEntriesByType("navigation")[0].responseStatus + "").startsWith(2) && frame.contentWindow.location.hash
+        /^2/.test(frame.contentWindow.performance.getEntriesByType("navigation")[0].responseStatus) && frame.contentWindow.location.hash
         || null
       )?.replaceWith(...frame.contentDocument.body.childNodes)
     );
