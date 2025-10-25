@@ -39,7 +39,7 @@
       <div>
         <h2>lightweight<span class="heading-icon">🪶</span></h2>
         <p>
-          <strong>166 bytes in total.</strong> Zero dependencies. Zero JS
+          <strong>253 bytes in total.</strong> Zero dependencies. Zero JS
           bundles to load. Not even a backend is required.
           <em>Just an inline HTML snippet</em>.
         </p>
@@ -119,7 +119,7 @@
       <p>Simply copy the following snippet into your page:</p>
       <pre
         class="code"
-      ><code class="rainbow-mask">&lt;iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))">&lt;/iframe></code></pre>
+      ><code class="rainbow-mask">&lt;iframe hidden name=htmz onload="setTimeout(()=>document.querySelector(/^2/.test(contentWindow.performance.getEntriesByType('navigation')[0].responseStatus)&&contentWindow.location.hash||null)?.replaceWith(...contentDocument.body.childNodes))">&lt;/iframe></code></pre>
       <p>
         For <strong>npm enjoyers</strong>, use the following npm commands to
         automate the <em>simple process of copying the snippet</em>. For maximum
